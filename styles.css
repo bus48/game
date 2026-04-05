@@ -1,0 +1,428 @@
+body, html
+{
+	height: 100%;
+    background-color: white;
+}
+
+body
+{
+	color: white;
+	background: black;
+	overflow: hidden;
+	overscroll-behavior-y: contain !important;
+    margin: 0;
+}
+
+#loadingScreen
+{
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    z-index: 10;
+    transition: opacity 0.35s ease;
+}
+
+.spinner
+{
+    width: 56px;
+    height: 56px;
+    border: 4px solid rgba(0, 0, 0, 0.2);
+    border-top-color: black;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+body:not(.is-loading) #loadingScreen
+{
+    opacity: 0;
+    pointer-events: none;
+}
+
+text
+{
+    pointer-events: none;
+}
+
+#gameObject
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+    background-color: white;
+}
+
+.frame
+{
+    fill: transparent;
+    stroke: black;
+    stroke-width: 8px;
+	width: 100%;
+	height: 100%;
+    pointer-events: none;
+}
+
+.background
+{
+    /*fill: #fffdb6;*/
+    fill: #ffffff;
+	width: 100%;
+	height: 100%;
+}
+
+.interaction_line
+{
+    stroke: black;
+    stroke-width: 2px;
+    fill: transparent;
+    rx: 2px;
+}
+
+.interaction_line_radial
+{
+    stroke: black;
+    stroke-width: 2px;
+    fill: transparent;
+}
+
+.interaction_circle
+{
+    width: 60px;
+    height: 60px;
+    transform: translate(-30px,-30px);
+    cursor: pointer;
+    pointer-events: all;
+}
+
+.character
+{
+    width: 100%;
+    height: 100%;
+}
+
+.hidden
+{
+    display: none;
+    /*visibility: hidden;*/
+}
+
+#outside_interior
+{
+    transform: translateX(-100%);
+}
+
+.outro_color
+{
+    fill: #FDE8AA;
+	width: 100%;
+	height: 100%;
+    opacity: 0.5;
+}
+
+.glow_outro
+{
+	width: 100%;
+	height: 100%;
+}
+
+.pause
+{
+    animation-play-state: paused !important;
+}
+
+#outside_interior_color
+{
+    fill: #C2C2C2;
+    width: 100%;
+    height: 100%;
+}
+
+/**************************************************************************************
+ Animated elements
+**************************************************************************************/
+
+/* Exterior */
+#scene_exterior, .scene_clock, .scene_interior
+{
+    animation: fade_in 1s ease-in forwards;
+}
+
+.camera_exterior
+{
+	animation: camera_exterior 2s ease-in-out forwards;
+}
+@keyframes camera_exterior
+{
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+}
+
+.interaction_view, .interaction_clock, .interaction_look
+{
+    animation: fade_in 1s ease-in forwards;
+}
+
+.interaction_tutorial
+{
+    animation: interaction_tutorial 3s ease-in-out forwards;
+    animation-iteration-count: infinite;
+}
+@keyframes interaction_tutorial
+{
+    0% { y: 0; }
+    50% { y: 0; }
+    90% { y: 60px; }
+    100% { y: 0; }
+}
+
+.me_exterior
+{
+	animation: me_exterior 2.5s linear forwards;
+}
+@keyframes me_exterior
+{
+    0% { transform: translateX(840px); }
+    100% { transform: translateX(0); }
+}
+
+.me_exterior_walk
+{
+    animation: me_exterior_walk 0.5s;
+    animation-iteration-count: 5;
+}
+@keyframes me_exterior_walk
+{
+    0% { transform: translateY(0); }
+    50% { transform: translateY(20px); }
+    100% { transform: translateY(0); }
+}
+
+#clock_minute.clock_hide
+{
+	animation: clock_minute 0.2s linear forwards;
+}
+@keyframes clock_minute
+{
+    to { transform: rotate(180deg);}
+}
+
+#scene_clock.clock_hide
+{
+    opacity: 1;
+    animation: fade_out 0.5s ease-out forwards !important;
+    animation-delay: 0.5s !important;
+}
+
+.bus_exterior
+{
+    x: 800px;
+	animation: bus_exterior_arrive 3.5s ease-out forwards;
+}
+@keyframes bus_exterior_arrive
+{
+    0% { transform: translateX(800px); }
+    80% { transform: translateX(-1500px); }
+    100% { transform: translateX(-1495px); }
+}
+
+.exterior_hide
+{
+    opacity: 1;
+    animation: fade_out 1s ease-out forwards !important;
+}
+
+/* Interior */
+
+.bus_interior_accelerate
+{
+    animation: bus_interior_accelerate 1s ease-in-out;
+}
+@keyframes bus_interior_accelerate
+{
+    0% { transform: translateX(0); }
+    70% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+}
+
+.bus_interior_shake
+{
+    animation: bus_interior_shake 2s ease-in-out;
+    animation-iteration-count: infinite;
+	animation-delay: 1s;
+}
+@keyframes bus_interior_shake
+{
+    0% { transform: translateY(0); }
+    15% { transform: translateY(-3px); }
+    30% { transform: translateY(2px); }
+    45% { transform: translateY(-1px); }
+    60% { transform: translateY(-3px); }
+    85% { transform: translateY(1px); }
+    100% { transform: translateY(0); }
+}
+
+.outside_interior
+{
+    animation: outside_interior 3s linear;
+    animation-iteration-count: infinite;
+}
+@keyframes outside_interior
+{
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.crowd_1, .crowd_2, .crowd_3, .crowd_4, .crowd_5, .crowd_6
+{
+    transform: translateX(-600px);
+	animation: crowd 2.5s linear forwards;
+}
+@keyframes crowd
+{
+    from { transform: translateX(-600px); }
+    to { transform: translateX(800px); }
+}
+
+.me_interior
+{
+	animation: me_interior 1.0s linear forwards;
+}
+@keyframes me_interior
+{
+    from { transform: translateX(-450px); }
+    to { transform: translateX(0); }
+}
+.me_interior_walk
+{
+    animation: me_exterior_walk 0.5s;
+    animation-iteration-count: 2;
+}
+
+.you_interior
+{
+	animation: you_interior 2.5s linear forwards;
+}
+@keyframes you_interior
+{
+    from { transform: translateX(-800px); }
+    to { transform: translateX(0); }
+}
+
+.you_interior_walk
+{
+    animation: me_exterior_walk 0.5s;
+    animation-iteration-count: infinite;
+}
+
+.me_interior_look_color
+{
+    opacity: 0;
+    animation: fade_in 0.5s ease-in forwards;
+	animation-delay: 0.25s;
+}
+
+.bus_interior_color, .outside_interior_color_1, .outside_interior_color_2
+{
+    animation: fade_in 1s ease-in forwards;
+}
+
+.interior_color
+{
+    display: block;
+    animation: interior_color 0.5s ease-out forwards;
+    transform-box: fill-box;
+    transform-origin: center center;
+}
+@keyframes interior_color
+{
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 0.5; }
+}
+
+/*
+.you_glow
+{
+    display: block;
+    animation: you_glow 1.0s ease-out forwards;
+    transform-box: fill-box;
+    transform-origin: center center;
+}
+@keyframes you_glow
+{
+    from { transform: scale(0); opacity: 1; }
+    to { transform: scale(1000); opacity: 0; }
+}
+*/
+
+.bus_interior_decelerate
+{
+    animation: bus_interior_decelerate 1s ease-in-out;
+}
+@keyframes bus_interior_decelerate
+{
+    0% { transform: translateX(0); }
+    70% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.you_interior_leave
+{
+	animation: you_interior_leave 2.5s linear forwards !important;
+}
+@keyframes you_interior_leave
+{
+    from { transform: translateX(0); }
+    to { transform: translateX(800px); }
+}
+
+.bus_interior_hide
+{
+	animation: fade_out 1s ease-out forwards !important;
+}
+
+.glow_outro_1, .glow_outro_2, .glow_outro_3
+{
+	animation: fade_in 2.5s ease-out forwards !important;
+}
+
+.text_outro
+{
+	animation: fade_in 1s ease-in forwards;
+}
+
+.game_outro
+{
+    
+	animation: game_outro 2.5s ease-out forwards !important;
+}
+@keyframes game_outro
+{
+    from { background-color: white; }
+    to { background-color: #fde8aa; }
+}
+
+/**************************************************************************************
+ Generic animations
+**************************************************************************************/
+
+@keyframes fade_in
+{
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fade_out
+{
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes spin
+{
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
