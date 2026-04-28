@@ -395,14 +395,24 @@ text
 }
 
 .game_outro
-{
-    
+{  
 	animation: game_outro 2.5s ease-out forwards !important;
 }
 @keyframes game_outro
 {
     from { background-color: white; }
     to { background-color: #fde8aa; }
+}
+
+.text_about
+{
+    animation: fade_in 1s ease-in forwards;
+    cursor: pointer;
+}
+
+.letter
+{
+    animation: fade_in 1s ease-in forwards;
 }
 
 /**************************************************************************************

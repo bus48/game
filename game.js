@@ -211,6 +211,9 @@ window.addEventListener("load", () =>
         LogStep("The end");
         await Wait(0.5);
         SetVisible("text_outro", true, true);
+        await Wait(2.0);
+        SetVisible("text_about", true, true);
+        InitInteractionLetter();
     }
 
     function Wait(s)
@@ -744,6 +747,32 @@ window.addEventListener("load", () =>
             m_Svg.removeEventListener("touchmove", OnLookTouchMove);
             m_Svg.removeEventListener("touchend", OnLookTouchEnd);
             m_Svg.removeEventListener("touchcancel", OnLookTouchEnd);
+        }
+    }
+
+    function InitInteractionLetter()
+    {
+        m_Svg.addEventListener("pointerdown", OnPointerDown);
+        m_Svg.addEventListener("touchstart", OnTouchStart, {passive: false});
+
+        function OnPointerDown(ev)
+        {
+            ShowLetter();
+        }
+
+        function OnTouchStart(ev)
+        {
+            const touch = ev.touches[0];
+            if (!touch)
+                return;
+
+            ev.preventDefault();
+            ShowLetter();
+        }
+
+        function ShowLetter()
+        {
+            SetVisible("letter", true, true);
         }
     }
 });

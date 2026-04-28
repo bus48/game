@@ -89,9 +89,13 @@
             <image id="interaction_look_circle" class="interaction_circle" href="images\Interaction.png" x="0" y="0" />
         </g>
 
-        <!--<image id="text_outro" class="hiddenx" href="images\Outro_text.png" x="150" y="400" width="500" />-->
         <image id="text_outro" class="hidden" href="images\Outro_text.png" x="410" y="100" width="350" />
+        <image id="text_about" class="hidden" href="images\About.png" x="410" y="570" width="300" />
 
         <rect class="frame" />
     </svg>
+
+    <g id="letter" class="hidden">
+        <image href="images\Letter.png" x="0" y="0" width="1000" />
+    </g>
 </svg>
