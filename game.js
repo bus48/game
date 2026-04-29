@@ -9,6 +9,7 @@ window.addEventListener("load", () =>
     let m_InteractionView = false;
     let m_InteractionClock = false;
     let m_InteractionYouLookAtMe = false;
+    let m_InteractionLetter = false;
 
     const VIBRATION_INTERACTION_START = [10];
     const VIBRATION_INTERACTION_CANCEL = [10];
@@ -37,6 +38,7 @@ window.addEventListener("load", () =>
         InitInteractionView();
         await WaitUntil(() => m_InteractionView);
         SetVisible("interaction_view", false);
+        window.goatcounter.count({path:  'interaction-intro', title: 'Interaction - Intro', event: true})
         if (!m_InteractionClock)
         {
             //m_SvgDoc.getElementById("background_exterior").classList.add("background_exterior");
@@ -72,6 +74,7 @@ window.addEventListener("load", () =>
             //await Wait(1);
             SetVisible("interaction_clock", true, true);
             await WaitUntil(() => m_InteractionClock);
+            window.goatcounter.count({path:  'interaction-watch', title: 'Interaction - Watch', event: true})
             SetVisible("interaction_clock", false);
 
             ///////////////////////////////////////////////////////////////////////////////
@@ -150,6 +153,7 @@ window.addEventListener("load", () =>
         SetVisible("interaction_look", true, true);
         InitInteractionLook();
         await WaitUntil(() => m_InteractionYouLookAtMe);
+        window.goatcounter.count({path:  'interaction-look', title: 'Interaction - Look', event: true})
 
         ///////////////////////////////////////////////////////////////////////////////
         //--- 16: I get colors
@@ -214,6 +218,12 @@ window.addEventListener("load", () =>
         await Wait(2.0);
         SetVisible("text_about", true, true);
         InitInteractionLetter();
+        await WaitUntil(() => m_InteractionLetter);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        //--- Epilogue: Letter
+        SetVisible("letter", true, true);
+        window.goatcounter.count({path:  'interaction-letter', title: 'Interaction - Letter', event: true})
     }
 
     function Wait(s)
@@ -772,7 +782,7 @@ window.addEventListener("load", () =>
 
         function ShowLetter()
         {
-            SetVisible("letter", true, true);
+            m_InteractionLetter = true;
         }
     }
 });
