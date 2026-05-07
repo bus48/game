@@ -215,6 +215,7 @@ window.addEventListener("load", () =>
         LogStep("The end");
         await Wait(0.5);
         SetVisible("text_outro", true, true);
+		/*
         await Wait(2.0);
         SetVisible("text_about", true, true);
         InitInteractionLetter();
@@ -224,6 +225,7 @@ window.addEventListener("load", () =>
         //--- Epilogue: Letter
         SetVisible("letter", true, true);
         window.goatcounter.count({path:  'interaction-letter', title: 'Interaction - Letter', event: true})
+		*/
     }
 
     function Wait(s)
